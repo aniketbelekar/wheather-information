@@ -8,40 +8,46 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
 
-  const fetchWeatherData = async () => {
+  const fetchWeatherData = async (e) => {
+    e.preventDefault(); 
     setError(null);
     try {
       const apiKey = 'cec0c6efe515e6ee9375257469f52e32'; 
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
       const response = await axios.get(apiUrl);
       setWeatherData(response.data);
-      console.log(response.data);
+
+      
+      const temperatureCelsius = response.data.main.temp - 273.15;
+      response.data.main.temp = temperatureCelsius.toFixed(2);
+      setWeatherData(response.data);
     } catch (err) {
       setWeatherData(null);
       setError('Failed to fetch weather data');
     }
   };
-  
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-4">Weather App</h1>
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter city name"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-            <button className="btn btn-primary" type="button" onClick={fetchWeatherData}>
-              Search
-            </button>
+      <h1 className="text-center mb-2">Weather App</h1>
+      <form onSubmit={fetchWeatherData}>
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter city name"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <button className="btn btn-primary" type="submit">
+                Search
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
       {weatherData && (
         <div className="card">
           <div className="card-body">
