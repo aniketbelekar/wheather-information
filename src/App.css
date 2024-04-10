@@ -1,0 +1,23 @@
+/* App.css */
+body{
+  height: 100%;
+  width: 100%;
+  background-image: url(https://images.search.yahoo.com/search/images;_ylt=AwrOrMdRKBZmmwQAiWlXNyoA;_ylu=Y29sbwNncTEEcG9zAzEEdnRpZAMEc2VjA3BpdnM-?p=wheather+app+background+image&fr2=piv-web&type=E210US885G0&fr=mcafee#id=90&iurl=https%3A%2F%2Fnordicapis.com%2Fwp-content%2Fuploads%2FHow-to-Build-an-API-Driven-Weather-App.png&action=click);
+
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.alert {
+  margin-top: 20px;
+}
